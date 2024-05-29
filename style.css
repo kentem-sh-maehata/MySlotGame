@@ -15,11 +15,11 @@ body main .container {
   margin: 0 auto;
   padding: 8px;
 }
-body main .container .img-area {
+body main .container .slot-area {
   display: flex;
   justify-content: space-between;
 }
-body main .container .img-area img {
+body main .container .slot-area img {
   border-radius: 4px;
 }
 body main .container .btn-area {
