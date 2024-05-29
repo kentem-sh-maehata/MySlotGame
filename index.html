@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <script src="main.js"></script>
+	<main>
+		<div class="container">
+			<div class="img-area">
+				<img src="img/bell.png" width="60" height="75" alt="スロット１の画像">
+				<img src="img/cherry.png" width="60" height="75" alt="スロット２の画像">
+				<img src="img/seven.png" width="60" height="75" alt="スロット３の画像">
+			</div>
+			<div class="btn-area">
+				<button id="stop1" class="disabled">STOP</button>
+				<button id="stop2" class="disabled">STOP</button>
+				<button id="stop3" class="disabled">STOP</button>
+			</div>
+		</div>
+		<button id="spin">SPIN</button>
+	</main>
+	<script src="main.js"></script>
 </body>
 </html>
