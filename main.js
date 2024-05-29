@@ -3,19 +3,15 @@
     const stop1 = document.getElementById("stop1");
     const stop2 = document.getElementById("stop2");
     const stop3 = document.getElementById("stop3");
-    const slot1 = document.getElementById("slot1");
-    const slot2 = document.getElementById("slot2");
-    const slot3 = document.getElementById("slot3");
     const slots = document.querySelectorAll(".slot-area img");
-    console.log(slots);
     let intervalId1, intervalId2, intervalId3;
     let slotCount = 0;
-    if (!slot1 ||
-        !("src" in slot1) ||
-        !slot2 ||
-        !("src" in slot2) ||
-        !slot3 ||
-        !("src" in slot3))
+    if (!slots[0] ||
+        !("src" in slots[0]) ||
+        !slots[1] ||
+        !("src" in slots[1]) ||
+        !slots[2] ||
+        !("src" in slots[2]))
         throw new Error();
     const spin = document.getElementById("spin");
     const imgs = ["cherry", "bell", "seven"];
@@ -32,20 +28,21 @@
         // スロットを回す
         intervalId1 = setInterval(() => {
             let randomIdx = Math.floor(Math.random() * 3);
-            if ("src" in slot1)
-                slot1.src = "img/" + imgs[randomIdx] + ".png";
+            if ("src" in slots[0])
+                slots[0].src = "img/" + imgs[randomIdx] + ".png";
         }, 10);
         intervalId2 = setInterval(() => {
             let randomIdx = Math.floor(Math.random() * 3);
-            if ("src" in slot2)
-                slot2.src = "img/" + imgs[randomIdx] + ".png";
+            if ("src" in slots[1])
+                slots[1].src = "img/" + imgs[randomIdx] + ".png";
         }, 10);
         intervalId3 = setInterval(() => {
             let randomIdx = Math.floor(Math.random() * 3);
-            if ("src" in slot3)
-                slot3.src = "img/" + imgs[randomIdx] + ".png";
+            if ("src" in slots[2])
+                slots[2].src = "img/" + imgs[randomIdx] + ".png";
         }, 10);
     });
+    // 終了判定
     function finishGame() {
         spin === null || spin === void 0 ? void 0 : spin.classList.remove("disabled");
         slotCount = 0;
@@ -57,19 +54,12 @@
             let imgSrc;
             if ("src" in slot) {
                 imgSrc = (_a = slot.src) === null || _a === void 0 ? void 0 : _a.toString();
-                // console.log(imgSrc)
-                if (imgSrc === null || imgSrc === void 0 ? void 0 : imgSrc.includes("cherry")) {
+                if (imgSrc === null || imgSrc === void 0 ? void 0 : imgSrc.includes("cherry"))
                     cherryCnt++;
-                    console.log("cherry!", cherryCnt);
-                }
-                if (imgSrc === null || imgSrc === void 0 ? void 0 : imgSrc.includes("bell")) {
+                if (imgSrc === null || imgSrc === void 0 ? void 0 : imgSrc.includes("bell"))
                     bellCnt++;
-                    console.log("bell!", bellCnt);
-                }
-                if (imgSrc === null || imgSrc === void 0 ? void 0 : imgSrc.includes("seven")) {
+                if (imgSrc === null || imgSrc === void 0 ? void 0 : imgSrc.includes("seven"))
                     sevenCnt++;
-                    console.log("seven!", sevenCnt);
-                }
             }
         });
         const Counts = [cherryCnt, bellCnt, sevenCnt];
@@ -84,7 +74,6 @@
                     maxNumCnt++;
                 }
             }
-            console.log(imgs[maxIdx]);
             slots.forEach((slot) => {
                 if ("src" in slot && "style" in slot) {
                     if (typeof slot.src === "string") {
@@ -95,10 +84,8 @@
                 }
             });
         }
-        // それぞれの画像の枚数をカウントする
-        // 最も多い画像の名称を取得
-        // 画像の名前が↑でなければ透明度を付与
     }
+    // スロットを止める
     stop1 === null || stop1 === void 0 ? void 0 : stop1.addEventListener("click", () => {
         stop1.classList.add("disabled");
         clearInterval(intervalId1);

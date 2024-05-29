@@ -2,11 +2,7 @@
   const stop1 = document.getElementById("stop1");
   const stop2 = document.getElementById("stop2");
   const stop3 = document.getElementById("stop3");
-  const slot1 = document.getElementById("slot1");
-  const slot2 = document.getElementById("slot2");
-  const slot3 = document.getElementById("slot3");
-  const slots = document.querySelectorAll(".slot-area img");
-  console.log(slots)
+  const slots= document.querySelectorAll(".slot-area img");
 
   let intervalId1: NodeJS.Timeout,
     intervalId2: NodeJS.Timeout,
@@ -15,12 +11,12 @@
   let slotCount = 0;
 
   if (
-    !slot1 ||
-    !("src" in slot1) ||
-    !slot2 ||
-    !("src" in slot2) ||
-    !slot3 ||
-    !("src" in slot3)
+    !slots[0] ||
+    !("src" in slots[0]) ||
+    !slots[1] ||
+    !("src" in slots[1]) ||
+    !slots[2] ||
+    !("src" in slots[2])
   )
     throw new Error();
 
@@ -41,18 +37,19 @@
     // スロットを回す
     intervalId1 = setInterval(() => {
       let randomIdx = Math.floor(Math.random() * 3);
-      if ("src" in slot1) slot1.src = "img/" + imgs[randomIdx] + ".png";
+      if ("src" in slots[0]) slots[0].src = "img/" + imgs[randomIdx] + ".png";
     }, 10);
     intervalId2 = setInterval(() => {
       let randomIdx = Math.floor(Math.random() * 3);
-      if ("src" in slot2) slot2.src = "img/" + imgs[randomIdx] + ".png";
+      if ("src" in slots[1]) slots[1].src = "img/" + imgs[randomIdx] + ".png";
     }, 10);
     intervalId3 = setInterval(() => {
       let randomIdx = Math.floor(Math.random() * 3);
-      if ("src" in slot3) slot3.src = "img/" + imgs[randomIdx] + ".png";
+      if ("src" in slots[2]) slots[2].src = "img/" + imgs[randomIdx] + ".png";
     }, 10);
   });
 
+  // 終了判定
   function finishGame() {
     spin?.classList.remove("disabled");
     slotCount = 0;
@@ -65,19 +62,12 @@
       let imgSrc;
       if ("src" in slot) {
         imgSrc = slot.src?.toString();
-        // console.log(imgSrc)
-        if (imgSrc?.includes("cherry")) {
+        if (imgSrc?.includes("cherry")) 
           cherryCnt++;
-          console.log("cherry!",cherryCnt);
-        }
-        if (imgSrc?.includes("bell")) {
+        if (imgSrc?.includes("bell")) 
           bellCnt++;
-          console.log("bell!",bellCnt);
-        }
-        if (imgSrc?.includes("seven")) {
+        if (imgSrc?.includes("seven")) 
           sevenCnt++;
-          console.log("seven!",sevenCnt);
-        }
       }
     });
     const Counts = [cherryCnt, bellCnt, sevenCnt];
@@ -92,7 +82,6 @@
           maxNumCnt ++
         }
       }
-      console.log(imgs[maxIdx])
       slots.forEach((slot)=>{
         if ("src" in slot && "style" in slot) {
           if (typeof slot.src === "string") {
@@ -103,12 +92,9 @@
         }
       })
     }
-
-    // それぞれの画像の枚数をカウントする
-    // 最も多い画像の名称を取得
-    // 画像の名前が↑でなければ透明度を付与
   }
 
+  // スロットを止める
   stop1?.addEventListener("click", () => {
     stop1.classList.add("disabled");
     clearInterval(intervalId1);
