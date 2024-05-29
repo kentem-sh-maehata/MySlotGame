@@ -60,4 +60,7 @@ body main button:active {
 body .disabled {
   opacity: 0.5;
   pointer-events: none;
+}
+body .opacity {
+  opacity: 0.5;
 }/*# sourceMappingURL=style.css.map */

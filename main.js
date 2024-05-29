@@ -26,8 +26,8 @@
         stop2 === null || stop2 === void 0 ? void 0 : stop2.classList.remove("disabled");
         stop3 === null || stop3 === void 0 ? void 0 : stop3.classList.remove("disabled");
         slots.forEach((slot) => {
-            if ("style" in slot && slot.style !== undefined && slot.style !== null && "opacity" in slot.style)
-                slot.style.opacity = 1;
+            if ("style" in slot && slot.style !== undefined && slot.style !== null)
+                slot.classList.remove("opacity");
         });
         // スロットを回す
         intervalId1 = setInterval(() => {
@@ -89,7 +89,7 @@
                 if ("src" in slot && "style" in slot) {
                     if (typeof slot.src === "string") {
                         if (slot.style && !(slot.src.includes(imgs[maxIdx]))) {
-                            slot.style.opacity = 0.5; // 透明度を50%に設定
+                            slot.classList.add("opacity");
                         }
                     }
                 }
