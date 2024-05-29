@@ -3,11 +3,11 @@ body {
 }
 body main {
   text-align: center;
-}
-body main .container {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+body main .container {
   background: #e9eded;
   border: 4px solid white;
   border-radius: 8px;
